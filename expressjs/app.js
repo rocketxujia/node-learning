@@ -28,6 +28,29 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+var options = {
+    host: 'www.diandian.com',
+    port: 80,
+    path: '/notes?postId=08510940-ae9a-11e0-9f84-782bcb383976',
+    method: 'GET'
+};
+/*var req = http.request(options, function(response) {*/
+var req = http.get(options, function(response) {
+    console.log("statusCode: ", response.statusCode);
+    console.log('HEADERS: ' + response.headers);
+    /*response.setEncoding('utf-8');*/
+    response.on('data', function(d) {
+        console.log('body:'  + d);
+    });
+    response.on('end', function(){
+        console.log('\n\n body 完毕！！');
+    });
+});
+
+// 记得关闭请求流。
+req.end();
+
+
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/config', function(req, res){
