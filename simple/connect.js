@@ -1,3 +1,4 @@
+//
 var http = require('http');
 var net = require('net');
 var url = require('url');
@@ -23,7 +24,6 @@ proxy.on('connect', function(req, cltSocket, head) {
 
 // now that proxy is running
 proxy.listen(1337, '127.0.0.1', function() {
-
     // make a request to a tunneling proxy
     var options = {
         port: 1337,
@@ -35,7 +35,7 @@ proxy.listen(1337, '127.0.0.1', function() {
     var req = http.request(options);
     req.end();
 
-    req.on('connect', function(res, socket, head) {
+    req.on('connect', function( res, socket ) {
         console.log('got connected!');
 
         // make a request over an HTTP tunnel
