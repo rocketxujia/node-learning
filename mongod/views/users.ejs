@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <h1><%= title %></h1>
+  <table>
+      <% for(i=0; i< users.length; i++) {%>
+      <tr>
+          <td><%= users[i].username %></td>
+          <td><a href="mailto:<%= users[i].email %>"><%= users[i].email %></a></td>
+      </tr>
+      <% } %>
+  </table>
+  </body>
+</html>
